@@ -28,6 +28,17 @@
 	<string>1</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>images.spotify.com</key>
+			<dict>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 	<key>NSPrincipalClass</key>
 	<string>MenuTunes</string>
 </dict>

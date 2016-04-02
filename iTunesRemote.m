@@ -28,6 +28,7 @@
     ITDebugLog(@"iTunesRemote begun");
     savedPSN = [self iTunesPSN];
 	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(spotifyNotificationHandler:) name:@"com.spotify.client.PlaybackStateChanged" object:nil suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
 	
 	NSString *iTunesPath = [[NSUserDefaults standardUserDefaults] stringForKey:@"CustomPlayerPath"];
 	NSDictionary *iTunesInfoPlist;
@@ -562,7 +563,12 @@
 	if ([descriptor typeCodeValue] == 'prop') {
 		return @"0-0";
 	} else if (descriptor == nil) {
-		return nil;
+        // Check Spotify
+        ProcessSerialNumber spotifyPSN = [self SpotifyPSN];
+
+        NSAppleEventDescriptor *spotifyCurrentTrackIdDescriptor = ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('ID  '), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &spotifyPSN);
+
+		return [spotifyCurrentTrackIdDescriptor stringValue];
 	}
     FourCharCode cls = [descriptor typeCodeValue];
     if ( ([self currentPlaylistClass] == ITMTRemotePlayerRadioPlaylist) || (cls == 'cURT') ) {
@@ -606,6 +612,13 @@
 	} else {
         temp1 = [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pnam'), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &savedPSN) stringValue];
     }
+
+    if (!temp1) {
+        ProcessSerialNumber spotifyPSN = [self SpotifyPSN];
+
+        temp1 = [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pnam'), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &spotifyPSN) stringValue];
+    }
+
     ITDebugLog(@"Getting current song title done.");
     return ( ([temp1 length]) ? temp1 : nil ) ;
 }
@@ -619,6 +632,13 @@
     } else {
         temp1 = @"";
     }
+
+    if (!temp1) {
+        ProcessSerialNumber spotifyPSN = [self SpotifyPSN];
+
+        temp1 = [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pArt'), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &spotifyPSN) stringValue];
+    }
+
     ITDebugLog(@"Getting current song artist done.");
     return ( ([temp1 length]) ? temp1 : nil ) ;
 }
@@ -645,6 +665,13 @@
     } else {
         temp1 = @"";
     }
+
+    if (!temp1) {
+        ProcessSerialNumber spotifyPSN = [self SpotifyPSN];
+
+        temp1 = [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pAlb'), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &spotifyPSN) stringValue];
+    }
+
     ITDebugLog(@"Getting current song album done.");
     return ( ([temp1 length]) ? temp1 : nil ) ;
 }
@@ -666,6 +693,14 @@
     temp1 = [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pcls'), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &savedPSN) int32Value];
     temp2 = [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pTim'), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &savedPSN) stringValue];
     if ( ([self currentPlaylistClass] == ITMTRemotePlayerRadioPlaylist) || (temp1 == 'cURT') ) { temp2 = @"Continuous"; }
+
+    if (!temp2) {
+        ProcessSerialNumber spotifyPSN = [self SpotifyPSN];
+
+        temp1 = [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pDur'), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &spotifyPSN) int32Value];
+        temp2 = [self formatTimeInSeconds:temp1 / 1000];
+    }
+
     ITDebugLog(@"Getting current song length done.");
     return temp2;
 }
@@ -684,6 +719,13 @@
     SInt32 temp1;
     ITDebugLog(@"Getting current song duration.");
     temp1 = [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pDur'), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &savedPSN) int32Value];
+
+    if (temp1 == 0) {
+        ProcessSerialNumber spotifyPSN = [self SpotifyPSN];
+
+        temp1 = [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pDur'), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &spotifyPSN) int32Value] / 1000;
+    }
+
     ITDebugLog(@"Getting current song duration done.");
     return temp1;
 }
@@ -714,6 +756,13 @@
     
     ITDebugLog(@"Getting current song elapsed time.");
 	final = (long)[ITSendAEWithKey('pPos', 'core', 'getd', &savedPSN) int32Value];
+
+    if (final == 0) {
+        ProcessSerialNumber spotifyPSN = [self SpotifyPSN];
+
+        final = (long)[ITSendAEWithKey('pPos', 'core', 'getd', &spotifyPSN) int32Value];
+    }
+
     finalString = [self formatTimeInSeconds:final];
     ITDebugLog(@"Getting current song elapsed time done.");
     return finalString;
@@ -722,10 +771,33 @@
 - (NSImage *)currentSongAlbumArt
 {
     ITDebugLog(@"Getting current song album art.");
-    NSData *data = ([self isPlaying]) ? [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pPCT'), from:obj { form:'indx', want:type('cArt'), seld:long(1), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } } }", 'core', 'getd', &savedPSN) data] : nil;
+    __block NSData *artData = ([self isPlaying]) ? [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('pPCT'), from:obj { form:'indx', want:type('cArt'), seld:long(1), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } } }", 'core', 'getd', &savedPSN) data] : nil;
+
+    if (!artData) {
+        ProcessSerialNumber spotifyPSN = [self SpotifyPSN];
+
+        NSString *artworkURLString = [ITSendAEWithString(@"'----':obj { form:'prop', want:type('prop'), seld:type('aUrl'), from:obj { form:'prop', want:type('prop'), seld:type('pTrk'), from:'null'() } }", 'core', 'getd', &spotifyPSN) stringValue];
+
+        if (artworkURLString) {
+            NSURL *artworkURL = [NSURL URLWithString:artworkURLString];
+            NSURLRequest *request = [NSURLRequest requestWithURL:artworkURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:3];
+            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+            [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                artData = [data copy];
+
+                dispatch_semaphore_signal(semaphore);
+            }] resume];
+
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
+            [artData autorelease];
+        }
+    }
+
     ITDebugLog(@"Getting current song album art done.");
-    if (data) {
-        return [[[NSImage alloc] initWithData:data] autorelease];
+    if (artData) {
+        return [[[NSImage alloc] initWithData:artData] autorelease];
     } else {
         return nil;
     }
@@ -1056,6 +1128,18 @@
 	ITDebugLog(@"Handled notification.");
 }
 
+- (void)spotifyNotificationHandler:(NSNotification *)note
+{
+	ITDebugLog(@"Received Spotify notification: %@", note);
+
+    // A small delay to allow Spotify's AppleScript responses to catch up
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ITMTTrackChanged" object:self userInfo:[note userInfo]];
+
+        ITDebugLog(@"Handled Spotify notification.");
+    });
+}
+
 - (ProcessSerialNumber)iTunesPSN
 {
     /*NSArray *apps = [[NSWorkspace sharedWorkspace] launchedApplications];
@@ -1100,6 +1184,16 @@
     }
     ITDebugLog(@"Failed getting iTunes' PSN.");
     return number;
+}
+
+- (ProcessSerialNumber)SpotifyPSN
+{
+    pid_t pid =[[[NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.spotify.client"] firstObject] processIdentifier];
+    ProcessSerialNumber psn;
+
+    GetProcessForPID(pid, &psn);
+
+    return psn;
 }
 
 - (NSString*)formatTimeInSeconds:(long)seconds {

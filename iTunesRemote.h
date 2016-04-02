@@ -21,6 +21,7 @@
 }
 - (BOOL)isPlaying;
 - (ProcessSerialNumber)iTunesPSN;
+- (ProcessSerialNumber)SpotifyPSN;
 - (NSString*)formatTimeInSeconds:(long)seconds;
 - (NSString*)zeroSixty:(int)seconds;
 @end
