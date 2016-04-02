@@ -1,6 +1,5 @@
 #import "AudioscrobblerController.h"
 #import "PreferencesController.h"
-#import <openssl/evp.h>
 #import <ITFoundation/ITDebug.h>
 
 #define AUDIOSCROBBLER_ID @"mtu"
@@ -133,6 +132,7 @@ static AudioscrobblerController *_sharedController = nil;
 
 - (void)submitTracks
 {
+#if 0
 	if (!_handshakeCompleted) {
 		[self attemptHandshake:NO];
 		return;
@@ -242,6 +242,7 @@ static AudioscrobblerController *_sharedController = nil;
 	//[_submitTracks removeAllObjects];
 	
 	//If we have tracks left, submit again after the interval seconds
+#endif
 }
 
 - (void)handleAudioscrobblerNotification:(NSNotification *)note

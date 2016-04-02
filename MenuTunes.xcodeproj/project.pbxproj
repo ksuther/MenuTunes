@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3739DDA308CFA0C600CCFBC6 /* PlaylistNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 3739DDA108CFA0C600CCFBC6 /* PlaylistNode.h */; };
-		3739DDA408CFA0C600CCFBC6 /* PlaylistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3739DDA208CFA0C600CCFBC6 /* PlaylistNode.m */; };
-		3739DDA508CFA0C600CCFBC6 /* PlaylistNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 3739DDA108CFA0C600CCFBC6 /* PlaylistNode.h */; };
-		3739DDA608CFA0C600CCFBC6 /* PlaylistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3739DDA208CFA0C600CCFBC6 /* PlaylistNode.m */; };
+		371821F2151B8C41009A58CC /* PlaylistNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3739DDA208CFA0C600CCFBC6 /* PlaylistNode.m */; };
+		371821F3151B8C44009A58CC /* PlaylistNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 3739DDA108CFA0C600CCFBC6 /* PlaylistNode.h */; };
 		3798C6B6091874600004C420 /* AudioscrobblerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3798C6B4091874600004C420 /* AudioscrobblerController.h */; };
 		3798C6B7091874600004C420 /* AudioscrobblerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3798C6B5091874600004C420 /* AudioscrobblerController.m */; };
 		37A1EBDB091F07F700C2CE55 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A1EBDA091F07F700C2CE55 /* Security.framework */; };
@@ -28,8 +26,6 @@
 		7C331FAC05A921E10088905B /* NetworkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C331FA005A921E10088905B /* NetworkObject.m */; };
 		7C331FAF05A921E10088905B /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C331FA305A921E10088905B /* NetworkController.m */; };
 		7C331FB005A921E10088905B /* NetworkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C331FA405A921E10088905B /* NetworkController.h */; };
-		7C331FB705A922210088905B /* StatusItemHack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C331FB105A922210088905B /* StatusItemHack.m */; };
-		7C331FB805A922210088905B /* StatusItemHack.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C331FB205A922210088905B /* StatusItemHack.h */; };
 		7C331FBA05A922210088905B /* StatusWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C331FB405A922210088905B /* StatusWindow.h */; };
 		7C331FBB05A922210088905B /* StatusWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C331FB505A922210088905B /* StatusWindow.m */; };
 		7C331FBC05A922210088905B /* StatusWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C331FB605A922210088905B /* StatusWindowController.h */; };
@@ -224,8 +220,6 @@
 		7C331FA005A921E10088905B /* NetworkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkObject.m; sourceTree = "<group>"; };
 		7C331FA305A921E10088905B /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
 		7C331FA405A921E10088905B /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
-		7C331FB105A922210088905B /* StatusItemHack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItemHack.m; sourceTree = "<group>"; };
-		7C331FB205A922210088905B /* StatusItemHack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItemHack.h; sourceTree = "<group>"; };
 		7C331FB305A922210088905B /* StatusWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusWindowController.m; sourceTree = "<group>"; };
 		7C331FB405A922210088905B /* StatusWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusWindow.h; sourceTree = "<group>"; };
 		7C331FB505A922210088905B /* StatusWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusWindow.m; sourceTree = "<group>"; };
@@ -321,8 +315,6 @@
 				7C331FA005A921E10088905B /* NetworkObject.m */,
 				7C331FA405A921E10088905B /* NetworkController.h */,
 				7C331FA305A921E10088905B /* NetworkController.m */,
-				7C331FB205A922210088905B /* StatusItemHack.h */,
-				7C331FB105A922210088905B /* StatusItemHack.m */,
 				7C331FB405A922210088905B /* StatusWindow.h */,
 				7C331FB505A922210088905B /* StatusWindow.m */,
 				7C331FB605A922210088905B /* StatusWindowController.h */,
@@ -476,8 +468,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				371821F3151B8C44009A58CC /* PlaylistNode.h in Headers */,
 				7C331FC405A9225A0088905B /* iTunesRemote.h in Headers */,
-				3739DDA508CFA0C600CCFBC6 /* PlaylistNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,11 +484,9 @@
 				7C331FA805A921E10088905B /* PreferencesController.h in Headers */,
 				7C331FAB05A921E10088905B /* NetworkObject.h in Headers */,
 				7C331FB005A921E10088905B /* NetworkController.h in Headers */,
-				7C331FB805A922210088905B /* StatusItemHack.h in Headers */,
 				7C331FBA05A922210088905B /* StatusWindow.h in Headers */,
 				7C331FBC05A922210088905B /* StatusWindowController.h in Headers */,
 				7C95A0E405A929F400B4F576 /* CustomMenuTableView.h in Headers */,
-				3739DDA308CFA0C600CCFBC6 /* PlaylistNode.h in Headers */,
 				3798C6B6091874600004C420 /* AudioscrobblerController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,9 +564,15 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 7C182AD308A84C6300A098F8 /* Build configuration list for PBXProject "MenuTunes" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* MenuTunes */;
 			projectDirPath = "";
 			projectReferences = (
@@ -693,7 +689,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C331FC305A9225A0088905B /* iTunesRemote.m in Sources */,
-				3739DDA608CFA0C600CCFBC6 /* PlaylistNode.m in Sources */,
+				371821F2151B8C41009A58CC /* PlaylistNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,11 +704,9 @@
 				7C331FA705A921E10088905B /* PreferencesController.m in Sources */,
 				7C331FAC05A921E10088905B /* NetworkObject.m in Sources */,
 				7C331FAF05A921E10088905B /* NetworkController.m in Sources */,
-				7C331FB705A922210088905B /* StatusItemHack.m in Sources */,
 				7C331FBB05A922210088905B /* StatusWindow.m in Sources */,
 				7C95A0E305A929F400B4F576 /* CustomMenuTableView.m in Sources */,
 				37CB20230753EE1E00BB0E46 /* StatusWindowController.m in Sources */,
-				3739DDA408CFA0C600CCFBC6 /* PlaylistNode.m in Sources */,
 				3798C6B7091874600004C420 /* AudioscrobblerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -824,7 +818,6 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "ITMTRemote-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-seg1addr",
@@ -852,7 +845,6 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "ITMTRemote-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-seg1addr",
@@ -877,7 +869,6 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "ITMTRemote-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-seg1addr",
@@ -904,7 +895,6 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "iTunesRemote-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = "";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = iTunes;
@@ -926,7 +916,6 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "iTunesRemote-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = "";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = iTunes;
@@ -945,7 +934,6 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = "iTunesRemote-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = "";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = iTunes;
@@ -975,11 +963,9 @@
 					.,
 					"$(SRCROOT)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-bind_at_load";
 				PRODUCT_NAME = MenuTunes;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -1009,11 +995,9 @@
 					.,
 					"$(SRCROOT)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-bind_at_load";
 				PRODUCT_NAME = MenuTunes;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -1041,11 +1025,9 @@
 					.,
 					"$(SRCROOT)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-bind_at_load";
 				PRODUCT_NAME = MenuTunes;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -1058,36 +1040,22 @@
 		7C182AD408A84C6300A098F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		7C182AD508A84C6300A098F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		7C182AD608A84C6300A098F8 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx;
 			};
 			name = Default;
 		};

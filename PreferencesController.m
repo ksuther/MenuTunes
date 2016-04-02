@@ -12,7 +12,6 @@
 
 #import <netinet/in.h>
 #import <arpa/inet.h>
-#import <openssl/sha.h>
 #import <sys/types.h>
 #import <sys/stat.h>
 

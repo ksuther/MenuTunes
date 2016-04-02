@@ -27,7 +27,7 @@
 {
     ITDebugLog(@"iTunesRemote begun");
     savedPSN = [self iTunesPSN];
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player"];
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
 	
 	NSString *iTunesPath = [[NSUserDefaults standardUserDefaults] stringForKey:@"CustomPlayerPath"];
 	NSDictionary *iTunesInfoPlist;

@@ -10,7 +10,6 @@
 #import "StatusWindow.h"
 #import "StatusWindowController.h"
 #import "AudioscrobblerController.h"
-#import "StatusItemHack.h"
 
 @interface NSMenu (MenuImpl)
 - (id)_menuImpl;
@@ -169,7 +168,6 @@ static MainController *sharedController;
     if ([df boolForKey:@"ITMTNoStatusItem"]) {
         statusItem = nil;
     } else {
-        [StatusItemHack install];
         statusItem = [[ITStatusItem alloc]
                 initWithStatusBar:[NSStatusBar systemStatusBar]
                 withLength:NSSquareStatusItemLength];
